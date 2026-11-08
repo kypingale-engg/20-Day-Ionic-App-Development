@@ -1,0 +1,50 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>My Task Manager</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Welcome Back!</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Manage your daily tasks and stay productive.
+
+      <ion-button expand="block" (click)="addTask()">
+        <ion-icon name="add-outline" slot="start"></ion-icon>
+        Add New Task
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <h2>My Tasks</h2>
+
+  <ion-list>
+
+    @for (task of tasks; track $index) {
+
+      <ion-item>
+
+        <ion-label>
+          <h2>{{ task.title }}</h2>
+          <p>{{ task.description }}</p>
+        </ion-label>
+
+        <ion-badge
+          slot="end"
+          [color]="task.status === 'Completed' ? 'success' : task.status === 'In Progress' ? 'warning' : 'medium'">
+          {{ task.status }}
+        </ion-badge>
+
+      </ion-item>
+
+    }
+
+  </ion-list>
+
+</ion-content>
