@@ -1,0 +1,53 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Task Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  @if (task) {
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          {{ task.title }}
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <h2>Task Information</h2>
+
+        <p><strong>Task ID:</strong> {{ task.id }}</p>
+
+        <p><strong>Task Name:</strong> {{ task.title }}</p>
+
+        <p>
+          <strong>Status:</strong>
+          {{ task.completed ? 'Completed' : 'Pending' }}
+        </p>
+
+        <ion-badge [color]="task.completed ? 'success' : 'warning'">
+          {{ task.completed ? 'Completed' : 'Pending' }}
+        </ion-badge>
+
+      </ion-card-content>
+    </ion-card>
+
+  } @else {
+
+    <ion-card>
+      <ion-card-content>
+        Task not found!
+      </ion-card-content>
+    </ion-card>
+
+  }
+
+</ion-content>

@@ -1,0 +1,52 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Settings</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <h2>App Settings</h2>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label>
+        <h2>Notifications</h2>
+        <p>Enable task notifications</p>
+      </ion-label>
+
+      <ion-toggle
+        [(ngModel)]="notificationsEnabled">
+      </ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <h2>Dark Mode</h2>
+        <p>Enable dark mode preference</p>
+      </ion-label>
+
+      <ion-toggle
+        [(ngModel)]="darkModeEnabled">
+      </ion-toggle>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-card>
+    <ion-card-content>
+      <h2>My Task Manager</h2>
+      <p>Day 4 Ionic Training Project</p>
+      <p>Version 1.0</p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

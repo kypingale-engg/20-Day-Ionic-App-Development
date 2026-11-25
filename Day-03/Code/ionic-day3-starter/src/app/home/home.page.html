@@ -1,0 +1,92 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>My Task Manager</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Welcome Card -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Welcome Back!</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Manage your daily tasks and stay productive.
+
+      <ion-button expand="block" (click)="addTask()">
+        <ion-icon name="add-outline" slot="start"></ion-icon>
+        Add New Task
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Task Filters -->
+  <h2>My Tasks</h2>
+
+  <div class="filter-buttons">
+
+    <ion-button
+      size="small"
+      [fill]="currentFilter === 'all' ? 'solid' : 'outline'"
+      (click)="applyFilter('all')">
+      All
+    </ion-button>
+
+    <ion-button
+      size="small"
+      [fill]="currentFilter === 'pending' ? 'solid' : 'outline'"
+      (click)="applyFilter('pending')">
+      Pending
+    </ion-button>
+
+    <ion-button
+      size="small"
+      [fill]="currentFilter === 'completed' ? 'solid' : 'outline'"
+      (click)="applyFilter('completed')">
+      Completed
+    </ion-button>
+
+  </div>
+
+  <!-- Task List -->
+  <ion-list>
+
+    @for (task of tasks; track task.id) {
+
+      <ion-item>
+
+        <ion-label>
+          <h2>{{ task.title }}</h2>
+
+          <p>
+            {{ task.completed ? 'Completed' : 'Pending' }}
+          </p>
+        </ion-label>
+
+        <ion-badge
+          slot="end"
+          [color]="task.completed ? 'success' : 'warning'">
+
+          {{ task.completed ? 'Completed' : 'Pending' }}
+
+        </ion-badge>
+
+      </ion-item>
+
+    } @empty {
+
+      <ion-item>
+        <ion-label>
+          No tasks available. Add your first task!
+        </ion-label>
+      </ion-item>
+
+    }
+
+  </ion-list>
+
+</ion-content>

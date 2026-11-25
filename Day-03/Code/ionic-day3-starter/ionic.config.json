@@ -1,0 +1,7 @@
+{
+  "name": "ionic-day1-starter",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
