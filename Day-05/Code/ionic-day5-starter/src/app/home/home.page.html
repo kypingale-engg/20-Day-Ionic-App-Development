@@ -1,0 +1,110 @@
+
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Task Management</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="form-container">
+
+    <h2>Create New Task</h2>
+    <p>Enter your task details below</p>
+
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" novalidate>
+
+      <!-- Task Title -->
+      <ion-item>
+        <ion-input
+          label="Task Title"
+          labelPlacement="floating"
+          placeholder="Enter task title"
+          formControlName="title"
+          required
+          [attr.aria-invalid]="taskForm.controls.title.invalid && taskForm.controls.title.touched">
+        </ion-input>
+      </ion-item>
+
+      @if (taskForm.controls.title.touched && taskForm.controls.title.hasError('required')) {
+        <ion-note color="danger" role="alert">
+          Task title is required.
+        </ion-note>
+      }
+
+      <!-- Description -->
+      <ion-item>
+        <ion-textarea
+          label="Description"
+          labelPlacement="floating"
+          placeholder="Enter task description"
+          formControlName="description"
+          rows="3">
+        </ion-textarea>
+      </ion-item>
+
+      <!-- Due Date -->
+      <ion-item>
+        <ion-input
+          type="date"
+          label="Due Date"
+          labelPlacement="floating"
+          formControlName="dueDate"
+          required
+          [attr.aria-invalid]="taskForm.controls.dueDate.invalid && taskForm.controls.dueDate.touched">
+        </ion-input>
+      </ion-item>
+
+      @if (taskForm.controls.dueDate.touched && taskForm.controls.dueDate.hasError('required')) {
+        <ion-note color="danger" role="alert">
+          Due date is required.
+        </ion-note>
+      }
+
+      <!-- Priority -->
+      <ion-item>
+        <ion-select
+          label="Priority"
+          labelPlacement="floating"
+          formControlName="priority">
+          <ion-select-option value="Low">Low</ion-select-option>
+          <ion-select-option value="Medium">Medium</ion-select-option>
+          <ion-select-option value="High">High</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Feedback Message -->
+      <p class="feedback" aria-live="polite">
+        {{ feedbackMessage }}
+      </p>
+
+      <!-- Submit Button -->
+      <ion-button expand="block" type="submit">
+        Submit Task
+      </ion-button>
+
+      <!-- Reset Button -->
+      <ion-button
+        expand="block"
+        color="medium"
+        type="button"
+        (click)="onReset()">
+        Reset Form
+      </ion-button>
+
+      <!-- Cancel Button -->
+      <ion-button
+        expand="block"
+        fill="outline"
+        color="danger"
+        type="button"
+        (click)="onCancel()">
+        Cancel
+      </ion-button>
+
+    </form>
+
+  </div>
+
+</ion-content>
