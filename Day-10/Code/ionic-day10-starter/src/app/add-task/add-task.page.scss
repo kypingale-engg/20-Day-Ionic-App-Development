@@ -1,0 +1,90 @@
+
+.add-task-content {
+  --background: #f7f5ff;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 28px 20px;
+}
+
+.form-heading {
+  margin-bottom: 28px;
+}
+
+.form-heading p {
+  color: #8054c7;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.form-heading h1 {
+  color: #302044;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 8px 0;
+}
+
+.form-heading span {
+  color: #817b8d;
+  font-size: 14px;
+}
+
+.form-card {
+  background: #ffffff;
+  padding: 24px 20px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(75, 48, 120, 0.07);
+}
+
+.input-group {
+  margin-bottom: 22px;
+}
+
+ion-input,
+ion-textarea {
+  --background: #faf9fd;
+  --color: #302044;
+  --placeholder-color: #aaa3b5;
+  --padding-start: 14px;
+  --padding-end: 14px;
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+  border: 1px solid #e5e0ed;
+  border-radius: 12px;
+}
+
+ion-input {
+  min-height: 58px;
+}
+
+ion-textarea {
+  min-height: 130px;
+}
+
+.error-message {
+  font-size: 13px;
+  margin: 8px 0;
+}
+
+.save-button {
+  --background: #7041c5;
+  --border-radius: 12px;
+  --box-shadow: none;
+  min-height: 50px;
+  margin-top: 24px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@media (max-width: 360px) {
+  .form-container {
+    padding: 22px 14px;
+  }
+
+  .form-card {
+    padding: 20px 16px;
+  }
+}

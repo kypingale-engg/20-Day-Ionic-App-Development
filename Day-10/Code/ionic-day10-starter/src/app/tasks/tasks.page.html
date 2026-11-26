@@ -1,0 +1,108 @@
+
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title>TaskFlow</ion-title>
+    <ion-button slot="end" fill="clear" color="medium" (click)="logout()">
+      Logout
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="tasks-content">
+  <div class="dashboard-container">
+
+    <!-- Network Status -->
+    <div *ngIf="!isOnline" class="offline-banner">
+      <ion-icon name="cloud-offline-outline"></ion-icon>
+      <div>
+        <strong>You are offline</strong>
+        <p>Your tasks are saved locally on this device.</p>
+      </div>
+    </div>
+
+    <div *ngIf="isOnline" class="online-banner">
+      <ion-icon name="cloud-done-outline"></ion-icon>
+      <span>You are online</span>
+    </div>
+
+    <div class="welcome-section">
+      <p class="greeting">YOUR WORKSPACE</p>
+      <h1>My Tasks</h1>
+      <p>Stay focused and get things done.</p>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="loading-state">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Loading your tasks...</p>
+    </div>
+
+    <!-- Dashboard Content -->
+    <ng-container *ngIf="!isLoading">
+
+      <div class="progress-card">
+        <div>
+          <p>Completed tasks</p>
+          <h2>{{ completedCount }} / {{ tasks.length }}</h2>
+        </div>
+        <div class="progress-icon">
+          <ion-icon name="checkmark-done-outline"></ion-icon>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <h2>Today's Tasks</h2>
+        <span>{{ tasks.length }} tasks</span>
+      </div>
+
+      <!-- Empty State -->
+      <div *ngIf="tasks.length === 0" class="empty-state">
+        <ion-icon name="clipboard-outline"></ion-icon>
+        <h3>No tasks yet</h3>
+        <p>Add your first task to get started.</p>
+      </div>
+
+      <!-- Task List -->
+      <ion-card
+        *ngFor="let task of tasks"
+        class="task-card"
+        (click)="openTask(task)"
+      >
+        <ion-card-content>
+          <div class="task-row">
+
+            <ion-checkbox
+              [checked]="task.completed"
+              (click)="$event.stopPropagation()"
+              (ionChange)="toggleTask(task.id)"
+            ></ion-checkbox>
+
+            <div class="task-info">
+              <h3 [class.completed]="task.completed">
+                {{ task.title }}
+              </h3>
+              <p>{{ task.description }}</p>
+            </div>
+
+            <ion-icon
+              name="chevron-forward-outline"
+              class="arrow-icon"
+            ></ion-icon>
+
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-button
+        expand="block"
+        class="add-task-button"
+        (click)="addTask()"
+      >
+        <ion-icon name="add-outline" slot="start"></ion-icon>
+        Add New Task
+      </ion-button>
+
+    </ng-container>
+
+  </div>
+</ion-content>

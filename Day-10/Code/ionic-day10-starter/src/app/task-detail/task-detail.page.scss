@@ -1,0 +1,94 @@
+
+.detail-content {
+  --background: #f7f5ff;
+}
+
+.detail-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 28px 20px;
+}
+
+.detail-heading {
+  margin-bottom: 24px;
+}
+
+.detail-heading p {
+  color: #8054c7;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.detail-heading h1 {
+  color: #302044;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.detail-card {
+  margin: 0;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px rgba(75, 48, 120, 0.07);
+}
+
+.detail-card ion-card-content {
+  padding: 24px;
+}
+
+.field-label {
+  color: #9570c5;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.detail-card h2 {
+  color: #302044;
+  font-size: 21px;
+  font-weight: 700;
+  margin-top: 0;
+}
+
+.description {
+  color: #77718a;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.divider {
+  height: 1px;
+  background: #eee9f5;
+  margin: 22px 0;
+}
+
+.status {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.back-button {
+  --background: #7041c5;
+  --border-radius: 12px;
+  --box-shadow: none;
+  min-height: 50px;
+  margin-top: 24px;
+  font-weight: 600;
+}
+
+.empty-detail {
+  text-align: center;
+  padding: 50px 15px;
+  color: #817b8d;
+}
+
+.empty-detail h2 {
+  color: #302044;
+}
+
+@media (max-width: 360px) {
+  .detail-container {
+    padding: 22px 14px;
+  }
+}

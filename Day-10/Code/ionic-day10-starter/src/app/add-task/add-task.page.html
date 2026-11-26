@@ -1,0 +1,65 @@
+
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-button
+      slot="start"
+      fill="clear"
+      color="medium"
+      (click)="goBack()">
+      Cancel
+    </ion-button>
+
+    <ion-title>Add Task</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="add-task-content">
+
+  <div class="form-container">
+
+    <div class="form-heading">
+      <p>STAY ORGANIZED</p>
+      <h1>Create a Task</h1>
+      <span>Add a new task to your daily list.</span>
+    </div>
+
+    <div class="form-card">
+
+      <div class="input-group">
+        <ion-input
+          label="Task title"
+          labelPlacement="stacked"
+          placeholder="Enter task title"
+          [(ngModel)]="title"
+          maxlength="80">
+        </ion-input>
+      </div>
+
+      <div class="input-group">
+        <ion-textarea
+          label="Description"
+          labelPlacement="stacked"
+          placeholder="Describe your task..."
+          [(ngModel)]="description"
+          rows="5"
+          autoGrow="true"
+          maxlength="300">
+        </ion-textarea>
+      </div>
+
+      <ion-text color="danger" *ngIf="errorMessage">
+        <p class="error-message">{{ errorMessage }}</p>
+      </ion-text>
+
+      <ion-button
+        expand="block"
+        class="save-button"
+        (click)="saveTask()">
+        Save Task
+      </ion-button>
+
+    </div>
+
+  </div>
+
+</ion-content>

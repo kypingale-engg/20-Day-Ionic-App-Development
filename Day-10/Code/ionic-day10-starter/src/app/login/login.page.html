@@ -1,0 +1,60 @@
+
+<ion-content [fullscreen]="true" class="login-content">
+
+  <div class="login-container">
+
+    <div class="brand-section">
+      <div class="brand-icon">
+        <ion-icon name="checkmark-done-outline"></ion-icon>
+      </div>
+
+      <h1>TaskFlow</h1>
+      <p>Your day, organized beautifully.</p>
+    </div>
+
+    <div class="form-section">
+      <h2>Welcome back!</h2>
+      <p class="subtitle">Sign in to continue managing your tasks.</p>
+
+      <div class="input-group">
+        <ion-input
+          type="email"
+          label="Email address"
+          labelPlacement="stacked"
+          placeholder="Enter your email"
+          [(ngModel)]="email"
+          autocomplete="email"
+          inputmode="email">
+        </ion-input>
+      </div>
+
+      <div class="input-group">
+        <ion-input
+          type="password"
+          label="Password"
+          labelPlacement="stacked"
+          placeholder="Enter your password"
+          [(ngModel)]="password"
+          autocomplete="current-password">
+        </ion-input>
+      </div>
+
+      <ion-text color="danger" *ngIf="errorMessage">
+        <p class="error-message">{{ errorMessage }}</p>
+      </ion-text>
+
+      <ion-button
+        expand="block"
+        class="login-button"
+        (click)="login()">
+        Sign In
+      </ion-button>
+
+      <p class="demo-note">
+        Demo application · No real account required
+      </p>
+    </div>
+
+  </div>
+
+</ion-content>

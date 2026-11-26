@@ -1,0 +1,73 @@
+
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-button
+      slot="start"
+      fill="clear"
+      color="medium"
+      (click)="goBack()">
+      Back
+    </ion-button>
+
+    <ion-title>Task Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="detail-content">
+
+  <div class="detail-container">
+
+    <div *ngIf="task; else taskNotFound">
+
+      <div class="detail-heading">
+        <p>YOUR TASK</p>
+        <h1>Task Details</h1>
+      </div>
+
+      <ion-card class="detail-card">
+        <ion-card-content>
+
+          <p class="field-label">TASK TITLE</p>
+          <h2>{{ task.title }}</h2>
+
+          <div class="divider"></div>
+
+          <p class="field-label">DESCRIPTION</p>
+          <p class="description">{{ task.description }}</p>
+
+          <div class="divider"></div>
+
+          <p class="field-label">STATUS</p>
+
+          <ion-text [color]="task.completed ? 'success' : 'warning'">
+            <p class="status">
+              {{ task.completed ? 'Completed' : 'Pending' }}
+            </p>
+          </ion-text>
+
+        </ion-card-content>
+      </ion-card>
+
+      <ion-button
+        expand="block"
+        class="back-button"
+        (click)="goBack()">
+        Back to My Tasks
+      </ion-button>
+
+    </div>
+
+    <ng-template #taskNotFound>
+      <div class="empty-detail">
+        <h2>Task not found</h2>
+        <p>This task may not exist.</p>
+
+        <ion-button (click)="goBack()">
+          Back to Tasks
+        </ion-button>
+      </div>
+    </ng-template>
+
+  </div>
+
+</ion-content>
