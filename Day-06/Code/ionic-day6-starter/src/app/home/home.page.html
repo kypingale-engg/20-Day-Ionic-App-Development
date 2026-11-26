@@ -1,0 +1,98 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>User Directory</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="page-container">
+
+    <!-- Page Heading -->
+    <div class="page-heading">
+      <h1>Users Directory</h1>
+      <p>Explore users fetched from a REST API.</p>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="state-container" role="status">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Loading users...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="!isLoading && errorMessage"
+         class="state-container"
+         role="alert">
+
+      <h2>Oops!</h2>
+      <p>{{ errorMessage }}</p>
+
+      <ion-button (click)="loadUsers()">
+        Retry
+      </ion-button>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!isLoading && !errorMessage && users.length === 0"
+         class="state-container">
+
+      <h2>No Users Found</h2>
+      <p>There are currently no users to display.</p>
+
+      <ion-button (click)="loadUsers()">
+        Refresh
+      </ion-button>
+    </div>
+
+    <!-- Users List -->
+    <div *ngIf="!isLoading && !errorMessage && users.length > 0">
+
+      <p class="user-count">
+        Total Users: {{ users.length }}
+      </p>
+
+      <ion-card *ngFor="let user of users">
+
+        <ion-card-header>
+          <ion-card-title>
+            {{ user.name }}
+          </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+
+          <p>
+            <strong>Username:</strong> {{ user.username }}
+          </p>
+
+          <p>
+            <strong>Email:</strong> {{ user.email }}
+          </p>
+
+          <p>
+            <strong>Phone:</strong> {{ user.phone }}
+          </p>
+
+          <p>
+            <strong>City:</strong> {{ user.address.city }}
+          </p>
+
+          <p>
+            <strong>Company:</strong> {{ user.company.name }}
+          </p>
+
+          <p>
+            <strong>Website:</strong> {{ user.website }}
+          </p>
+
+        </ion-card-content>
+
+      </ion-card>
+
+    </div>
+
+  </div>
+
+</ion-content>
