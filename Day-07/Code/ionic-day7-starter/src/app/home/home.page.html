@@ -1,0 +1,242 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>User Management</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="page-container">
+
+    <div class="page-heading">
+      <h1>User Management</h1>
+      <p>Add, view, edit and delete users using REST API.</p>
+    </div>
+
+    <!-- Add/Edit Form -->
+    <ion-card class="form-card">
+
+      <ion-card-header>
+        <ion-card-title>
+          {{ editingUserId === null ? 'Add New User' : 'Edit User' }}
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <form (ngSubmit)="saveUser()">
+
+          <ion-item>
+            <ion-input
+              label="Full Name"
+              label-placement="stacked"
+              placeholder="Enter user name"
+              [(ngModel)]="userForm.name"
+              name="name"
+              required>
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              label="Email Address"
+              label-placement="stacked"
+              type="email"
+              placeholder="Enter email address"
+              [(ngModel)]="userForm.email"
+              name="email"
+              required>
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              label="Username"
+              label-placement="stacked"
+              placeholder="Enter username"
+              [(ngModel)]="userForm.username"
+              name="username">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              label="Phone Number"
+              label-placement="stacked"
+              type="tel"
+              placeholder="Enter phone number"
+              [(ngModel)]="userForm.phone"
+              name="phone">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              label="Website"
+              label-placement="stacked"
+              placeholder="Enter website"
+              [(ngModel)]="userForm.website"
+              name="website">
+            </ion-input>
+          </ion-item>
+
+          <div class="form-buttons">
+
+            <ion-button
+              type="submit"
+              expand="block"
+              [disabled]="isSaving">
+
+              {{ isSaving
+                ? 'Saving...'
+                : editingUserId === null
+                  ? 'Add User'
+                  : 'Update User' }}
+
+            </ion-button>
+
+            <ion-button
+              *ngIf="editingUserId !== null"
+              type="button"
+              expand="block"
+              fill="outline"
+              color="medium"
+              (click)="cancelEdit()">
+
+              Cancel
+
+            </ion-button>
+
+          </div>
+
+        </form>
+
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Success Message -->
+    <div
+      *ngIf="successMessage"
+      class="success-message"
+      role="status">
+
+      {{ successMessage }}
+
+    </div>
+
+    <!-- Error Message -->
+    <div
+      *ngIf="errorMessage"
+      class="error-message"
+      role="alert">
+
+      {{ errorMessage }}
+
+    </div>
+
+    <!-- Users Heading -->
+    <div class="users-heading">
+
+      <h2>All Users</h2>
+
+      <ion-button
+        size="small"
+        fill="outline"
+        (click)="loadUsers()"
+        [disabled]="isLoading">
+
+        Refresh
+
+      </ion-button>
+
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="isLoading" class="state-container">
+
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Loading users...</p>
+
+    </div>
+
+    <!-- Empty State -->
+    <div
+      *ngIf="!isLoading && !errorMessage && users.length === 0"
+      class="state-container">
+
+      <p>No users found.</p>
+
+    </div>
+
+    <!-- Users List -->
+    <div *ngIf="!isLoading && users.length > 0">
+
+      <p class="user-count">
+        Total Users: {{ users.length }}
+      </p>
+
+      <ion-card
+        *ngFor="let user of users"
+        class="user-card">
+
+        <ion-card-header>
+          <ion-card-title>
+            {{ user.name }}
+          </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+
+          <p><strong>ID:</strong> {{ user.id }}</p>
+
+          <p><strong>Email:</strong> {{ user.email }}</p>
+
+          <p>
+            <strong>Username:</strong>
+            {{ user.username || 'Not provided' }}
+          </p>
+
+          <p>
+            <strong>Phone:</strong>
+            {{ user.phone || 'Not provided' }}
+          </p>
+
+          <p>
+            <strong>Website:</strong>
+            {{ user.website || 'Not provided' }}
+          </p>
+
+          <div class="action-buttons">
+
+            <ion-button
+              size="small"
+              color="primary"
+              (click)="editUser(user)">
+
+              Edit
+
+            </ion-button>
+
+            <ion-button
+              size="small"
+              color="danger"
+              (click)="deleteUser(user.id)"
+              [disabled]="deletingUserId === user.id">
+
+              {{ deletingUserId === user.id
+                ? 'Deleting...'
+                : 'Delete' }}
+
+            </ion-button>
+
+          </div>
+
+        </ion-card-content>
+      </ion-card>
+
+    </div>
+
+  </div>
+
+</ion-content>
