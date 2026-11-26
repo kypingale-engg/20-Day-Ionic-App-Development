@@ -1,0 +1,26 @@
+h2 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+ion-item {
+  --border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+ion-button {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+ion-checkbox {
+  margin-right: 12px;
+}
+
+ion-label p {
+  margin-top: 5px;
+  color: var(--ion-color-medium);
+  font-size: 13px;
+}
