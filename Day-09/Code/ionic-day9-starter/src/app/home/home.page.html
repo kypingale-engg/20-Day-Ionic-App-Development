@@ -1,0 +1,96 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Day 09 - Offline Support</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Online / Offline Banner -->
+  <div *ngIf="online$ | async; else offlineBanner"
+       class="network-banner online-banner">
+    <strong>You're online</strong>
+    <p>Your internet connection is active.</p>
+  </div>
+
+  <ng-template #offlineBanner>
+    <div class="network-banner offline-banner">
+      <strong>You're offline</strong>
+      <p>Your tasks are saved locally on this device.</p>
+    </div>
+  </ng-template>
+
+  <!-- Cached Data Information -->
+  <div class="cache-banner">
+    <strong>Local Data Available</strong>
+    <p>Tasks are stored on this device for offline access.</p>
+    <small>Last updated: {{ lastUpdated | date:'short' }}</small>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-banner">
+    {{ errorMessage }}
+
+    <ion-button
+      *ngIf="showRetry"
+      size="small"
+      fill="outline"
+      (click)="retry()">
+      Retry
+    </ion-button>
+  </div>
+
+  <h2>Welcome, {{ user$ | async }}!</h2>
+
+  <ion-item>
+    <ion-input
+      label="Update your name"
+      labelPlacement="stacked"
+      placeholder="Enter your name"
+      [(ngModel)]="userName">
+    </ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="updateUser()">
+    Update User
+  </ion-button>
+
+  <h2>My Task List</h2>
+
+  <ion-item>
+    <ion-input
+      label="New Task"
+      labelPlacement="stacked"
+      placeholder="Enter task name"
+      [(ngModel)]="newTask">
+    </ion-input>
+  </ion-item>
+
+  <ion-button
+    expand="block"
+    (click)="addTask()"
+    [disabled]="isSubmitting || !newTask.trim()">
+    {{ isSubmitting ? 'Saving...' : 'Add Task' }}
+  </ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let task of tasks$ | async">
+      <ion-checkbox
+        slot="start"
+        [checked]="task.completed"
+        (ionChange)="toggleTask(task.id)">
+      </ion-checkbox>
+
+      <ion-label>
+        {{ task.title }}
+        <p>{{ task.completed ? 'Completed' : 'Pending' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <p *ngIf="(tasks$ | async)?.length === 0">
+    No tasks available. Add your first task!
+  </p>
+
+</ion-content>

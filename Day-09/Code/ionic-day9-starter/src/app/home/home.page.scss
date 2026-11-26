@@ -1,0 +1,41 @@
+
+.network-banner,
+.cache-banner,
+.error-banner {
+  padding: 14px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+}
+
+.network-banner p,
+.cache-banner p {
+  margin: 6px 0 0;
+}
+
+.online-banner {
+  background: #e0f7e9;
+  color: #176b37;
+  border-left: 5px solid #28a745;
+}
+
+.offline-banner {
+  background: #fff0e0;
+  color: #9a4b00;
+  border-left: 5px solid #f59e0b;
+}
+
+.cache-banner {
+  background: #e9e8ff;
+  color: #40358a;
+  border-left: 5px solid #7164d8;
+}
+
+.error-banner {
+  background: #ffe5e5;
+  color: #a00000;
+  border-left: 5px solid #dc3545;
+}
+
+ion-button {
+  margin-top: 10px;
+}
